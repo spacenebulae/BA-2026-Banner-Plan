@@ -246,19 +246,24 @@
 </div>
 
 <script>
-    // --- LAST UPDATED LOGIC ---
+// --- LAST UPDATED & PRELOADER LOGIC ---
     window.addEventListener('DOMContentLoaded', () => {
+        // 1. Update the date
         const lastMod = new Date(document.lastModified);
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        // This will display as: January 22, 2026 (or whatever today's date is)
-        document.getElementById('last-updated').textContent = "Last Intelligence Sync: " + lastMod.toLocaleDateString(undefined, options);
+        const dateElement = document.getElementById('last-updated');
+        if (dateElement) {
+            dateElement.textContent = "Last Intelligence Sync: " + lastMod.toLocaleDateString(undefined, options);
+        }
+
+        // 2. Preload favicon frames to prevent flickering/lag
+        frames.forEach(frame => {
+            const img = new Image();
+            img.src = frame.s;
+        });
     });
 
-    // ... (Keep your existing Favicon animation script here) ...
-</script>
-
-<script>
-    // Frame data from your GIF timings
+    // --- FAVICON ANIMATION LOGIC ---
     const frames = [
         { s: 'frame0.png', d: 60 }, { s: 'frame1.png', d: 60 }, { s: 'frame2.png', d: 60 },
         { s: 'frame3.png', d: 120 }, { s: 'frame4.png', d: 120 }, { s: 'frame5.png', d: 60 },
@@ -289,8 +294,8 @@
         setTimeout(up, frames[i].d);
     }
 
-    // Initialize animation
-    window.addEventListener('DOMContentLoaded', () => {
+    // Initialize animation after everything is ready
+    window.addEventListener('load', () => {
         setTimeout(up, frames[0].d);
     });
 </script>
