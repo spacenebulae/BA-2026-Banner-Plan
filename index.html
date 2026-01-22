@@ -239,8 +239,23 @@
         <p style="margin-top: 15px;"><a href="https://ba.joexyz.online/global/banners" target="_blank" class="external-link">Visit BA Banner Tracker →</a></p>
     </div>
 
-    <footer>Operational Document for Sensei • 2026 Season</footer>
+    <footer>
+        Operational Document for Sensei • 2026 Season<br>
+        <span id="last-updated" style="font-size: 0.7rem; opacity: 0.8;"></span>
+    </footer>
 </div>
+
+<script>
+    // --- LAST UPDATED LOGIC ---
+    window.addEventListener('DOMContentLoaded', () => {
+        const lastMod = new Date(document.lastModified);
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        // This will display as: January 22, 2026 (or whatever today's date is)
+        document.getElementById('last-updated').textContent = "Last Intelligence Sync: " + lastMod.toLocaleDateString(undefined, options);
+    });
+
+    // ... (Keep your existing Favicon animation script here) ...
+</script>
 
 <script>
     // Frame data from your GIF timings
