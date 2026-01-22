@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BA 2026 Banner Plan</title>
+    
+    <link id="favicon" rel="icon" href="frame0.png" type="image/png">
+
+    <style>
+        @font-face {
+            font-family: 'Google Sans';
+            src: url('GoogleSans-Regular.ttf');
+            font-weight: normal;
+        }
+
+        @font-face {
+            font-family: 'Google Sans';
+            src: url('GoogleSans-Bold.ttf');
+            font-weight: bold;
+        }
+
+        :root {
+            --bg-color: #000000;
+            --bg-gradient: radial-gradient(circle at top, #1a1a1a 0%, #000000 80%);
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --accent-blue: #4cc9f0;
+            --accent-pink: #f72585;
+            --accent-gold: #ffc300;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+        }
+
+        body {
+            background: var(--bg-color);
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            font-family: 'Google Sans', sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container { max-width: 900px; width: 100%; }
+
+        header { text-align: center; margin-bottom: 60px; }
+        h1 { font-weight: bold; font-size: 3rem; margin: 0; letter-spacing: -1px; }
+        .subtitle { color: var(--text-secondary); font-size: 1.1rem; margin-top: 10px; }
+
+        .section-header {
+            font-size: 0.9rem; font-weight: bold; color: var(--accent-blue);
+            text-transform: uppercase; letter-spacing: 3px;
+            margin: 60px 0 30px 0; display: flex; align-items: center;
+        }
+        .section-header::after {
+            content: ""; height: 1px; flex-grow: 1;
+            background: linear-gradient(to right, var(--card-border), transparent);
+            margin-left: 20px;
+        }
+
+        .pyro-icon {
+            width: 18px; height: 18px;
+            vertical-align: middle; margin: 0 2px;
+        }
+
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .card:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateY(-5px);
+        }
+
+        .portrait {
+            width: 100px; height: 100px;
+            border-radius: 16px; object-fit: cover;
+            border: 1px solid var(--card-border);
+            flex-shrink: 0;
+        }
+
+        .card-content { flex-grow: 1; }
+
+        .date-tag {
+            font-size: 0.65rem; font-weight: bold; color: var(--accent-blue);
+            background: rgba(76, 201, 240, 0.1); padding: 4px 10px;
+            border-radius: 6px; margin-bottom: 10px; display: inline-block;
+        }
+
+        .student-title { font-size: 1.4rem; font-weight: bold; margin-bottom: 2px; display: block; }
+        .role { font-size: 0.8rem; color: var(--accent-gold); font-weight: bold; margin-bottom: 8px; display: block; }
+        .assessment { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4; margin: 0; }
+
+        .strategy-block {
+            background: var(--card-bg); border-radius: 24px;
+            padding: 35px; border: 1px solid var(--card-border);
+        }
+        
+        .strategy-category h3 {
+            color: #fff; font-size: 1.1rem; margin: 0 0 15px 0;
+        }
+
+        .strategy-item {
+            margin: 12px 0; font-size: 1rem; color: var(--text-secondary);
+            display: flex; align-items: flex-start; line-height: 1.5;
+        }
+        .strategy-item::before {
+            content: "✦"; color: var(--accent-blue); margin-right: 15px;
+        }
+
+        .reminder-box {
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.03), transparent);
+            border: 1px solid var(--card-border);
+            padding: 30px; border-radius: 24px; margin-top: 25px;
+        }
+        .reminder-box.gold {
+            background: linear-gradient(45deg, rgba(255, 195, 0, 0.05), transparent);
+            border: 1px solid rgba(255, 195, 0, 0.2);
+        }
+        .reminder-box h4 { margin: 0 0 15px 0; color: var(--accent-gold); font-size: 1rem; letter-spacing: 1px; text-transform: uppercase; }
+        .reminder-box.blue h4 { color: var(--accent-blue); }
+
+        .external-link {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s;
+        }
+        .external-link:hover { border-color: var(--accent-blue); }
+
+        footer { margin-top: 100px; opacity: 0.3; text-align: center; font-size: 0.8rem; padding-bottom: 40px; }
+
+        @media (max-width: 750px) { .grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>2026 Savings Plan</h1>
+        <div class="subtitle">Tactical Recruitment & <img src="pyroxene.png" class="pyro-icon"> Savings Guide</div>
+    </header>
+
+    <div class="section-header">Target Students</div>
+    <div class="grid">
+        <div class="card">
+            <img src="iori.png" class="portrait">
+            <div class="card-content">
+                <span class="date-tag">MAR 10 – MAR 17</span>
+                <span class="student-title">Iori (Swimsuit)</span>
+                <span class="role">Strong DPS • Main Priority</span>
+                <p class="assessment">High-impact explosive damage. Your primary goal for this season's recruitment.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="hina.png" class="portrait">
+            <div class="card-content">
+                <span class="date-tag">MAR 10 – MAR 17</span>
+                <span class="student-title">Hina (Swimsuit)</span>
+                <span class="role">Solid All-Around DPS</span>
+                <p class="assessment">A must-have for mid-to-endgame players. Excellent for large-scale battles.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="mari.png" class="portrait">
+            <div class="card-content">
+                <span class="date-tag">APR 28 – MAY 12</span>
+                <span class="student-title">Mari (Pop Idol)</span>
+                <span class="role">Top-Tier Healer/Support • Super Useful</span>
+                <p class="assessment">Critical for team survival in high-difficulty content. Highly versatile.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="sakurako.png" class="portrait">
+            <div class="card-content">
+                <span class="date-tag">APR 28 – MAY 12</span>
+                <span class="student-title">Sakurako (Pop Idol)</span>
+                <span class="role">Solid Support • Limited Priority</span>
+                <p class="assessment">Strong limited buffer. Pull if <img src="pyroxene.png" class="pyro-icon"> permits after securing Mari.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-header"><img src="pyroxene.png" class="pyro-icon" style="width:24px; height:24px;"> Accumulation Strategy</div>
+    
+    <div class="strategy-block">
+        <div class="strategy-category">
+            <h3>Daily / Weekly Grind</h3>
+            <div class="strategy-item">Daily missions – do all dailies, especially ones giving <img src="pyroxene.png" class="pyro-icon"> pyroxene.</div>
+            <div class="strategy-item">Sweep farming missions – pick the highest stage u can reliably auto-clear for max rewards.</div>
+            <div class="strategy-item">Weekly raids/club events – participate to get extra <img src="pyroxene.png" class="pyro-icon"> pyroxene.</div>
+            <div class="strategy-item">Arena/Tactical Challenge – collect <img src="pyroxene.png" class="pyro-icon"> pyroxene from ladders (Rank 700-900).</div>
+        </div>
+        <div style="height: 25px;"></div>
+        <div class="strategy-category">
+            <h3>Event & Shop Optimization</h3>
+            <div class="strategy-item">Login rewards – don’t miss <img src="pyroxene.png" class="pyro-icon"> pyroxene from login milestones.</div>
+            <div class="strategy-item">Festival/event shops – exchange event currencies for <img src="pyroxene.png" class="pyro-icon"> pyroxene first.</div>
+            <div class="strategy-item">Always redeem event rewards to prevent missing chunks before expiry.</div>
+        </div>
+        <div style="height: 25px;"></div>
+        <div class="strategy-category">
+            <h3>Focus & Efficiency</h3>
+            <div class="strategy-item">Optimization – Focus on 1–2 <img src="pyroxene.png" class="pyro-icon"> missions at a time for max efficiency.</div>
+            <div class="strategy-item">Discipline – Save for Swimsuit Iori & Hina first, then Idol Mari & Sakurako.</div>
+        </div>
+    </div>
+
+    <div class="section-header">Sensei's Intelligence</div>
+    
+    <div class="reminder-box gold">
+        <h4>🎁 Gift & Affection Policy</h4>
+        <p>When you have opportunities to get gifts without spending <img src="pyroxene.png" class="pyro-icon"> pyroxenes, prioritize students with <strong>no affection rank</strong> yet. Using them in low-level battles allows you to access their <strong>Momotalk</strong> stories, which are a direct source of "hidden" <img src="pyroxene.png" class="pyro-icon"> pyroxene to help you reach your Spark goal.</p>
+    </div>
+
+    <div class="reminder-box blue">
+        <h4>🌐 External Intel Recruitment Tracker</h4>
+        <p>Stay updated on upcoming global banners and timeline shifts via the community tracker to adjust your <img src="pyroxene.png" class="pyro-icon"> budget:</p>
+        <p style="margin-top: 15px;"><a href="https://ba.joexyz.online/global/banners" target="_blank" class="external-link">Visit BA Banner Tracker →</a></p>
+    </div>
+
+    <footer>Operational Document for Sensei • 2026 Season</footer>
+</div>
+
+<script>
+    // Frame data from your GIF timings
+    const frames = [
+        { s: 'frame0.png', d: 60 }, { s: 'frame1.png', d: 60 }, { s: 'frame2.png', d: 60 },
+        { s: 'frame3.png', d: 120 }, { s: 'frame4.png', d: 120 }, { s: 'frame5.png', d: 60 },
+        { s: 'frame6.png', d: 60 }, { s: 'frame7.png', d: 60 }, { s: 'frame8.png', d: 60 },
+        { s: 'frame9.png', d: 120 }, { s: 'frame10.png', d: 60 }, { s: 'frame11.png', d: 60 },
+        { s: 'frame12.png', d: 60 }, { s: 'frame13.png', d: 120 }, { s: 'frame14.png', d: 120 },
+        { s: 'frame15.png', d: 60 }, { s: 'frame16.png', d: 60 }, { s: 'frame17.png', d: 60 },
+        { s: 'frame18.png', d: 60 }, { s: 'frame19.png', d: 60 }
+    ];
+    
+    let i = 0;
+
+    function up() {
+        const head = document.getElementsByTagName('head')[0];
+        const old = document.getElementById('favicon');
+        const next = document.createElement('link');
+        
+        i = (i + 1) % frames.length;
+        
+        next.id = 'favicon';
+        next.rel = 'icon';
+        next.type = 'image/png';
+        next.href = frames[i].s;
+        
+        if (old) head.removeChild(old);
+        head.appendChild(next);
+        
+        setTimeout(up, frames[i].d);
+    }
+
+    // Initialize animation
+    window.addEventListener('DOMContentLoaded', () => {
+        setTimeout(up, frames[0].d);
+    });
+</script>
+
+</body>
+</html>
