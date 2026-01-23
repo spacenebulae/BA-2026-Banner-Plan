@@ -7,10 +7,39 @@
     
     <link id="favicon" rel="icon" href="frame0.png" type="image/png">
     <style>
-		html {
-            scroll-behavior: smooth;
+		/* --- CUSTOM CURSOR STYLES --- */
+        body {
+            cursor: none; /* Hides the default Windows/Mac arrow */
         }
-		
+
+        #cursor-dot {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 10px;
+            background-color: white;
+            border-radius: 50%;
+            pointer-events: none; /* Crucial: lets clicks pass through */
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: difference; /* Optional: makes it visible on white backgrounds */
+            transition: width 0.2s, height 0.2s; /* Smooth sizing for hover effects */
+        }
+
+        /* Hover effect: Scale up slightly when over links */
+        #cursor-dot.hovered {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1); /* Transparent halo */
+            border: 1px solid white;
+        }
+
+        /* --- MOBILE PROTECTION --- */
+        @media (max-width: 800px) {
+            body { cursor: auto; } /* Restore default cursor */
+            #cursor-dot { display: none; } /* Hide our dot */
+        }
         @font-face {
             font-family: 'Google Sans';
             src: url('GoogleSans-Regular.ttf');
@@ -156,7 +185,10 @@
     </style>
 </head>
 <body>
+    <div id="cursor-dot"></div>
 
+    <div class="container">
+    ```
 <div class="container">
     <header>
         <h1>Blue Archive Savings Plan Shenanigans</h1>
@@ -286,6 +318,41 @@
 <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script> 
 
 <script>
+	// --- 0. AESTHETIC CURSOR LOGIC ---
+    const cursor = document.getElementById('cursor-dot');
+    
+    // Variables to track position
+    let mouseX = 0, mouseY = 0; // Where the real mouse is
+    let cursorX = 0, cursorY = 0; // Where our dot is
+    
+    // 1. Listen for real mouse movement
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    // 2. Add hover effect for links (makes dot bigger)
+    const links = document.querySelectorAll('a, .card'); // Targets links and your cards
+    links.forEach(link => {
+        link.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+        link.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+    });
+
+    // 3. The Animation Loop (The "Smoothing" Math)
+    function animateCursor() {
+        // "Lerp" formula: Move 15% of the distance towards the mouse every frame
+        // Change 0.15 to 0.05 for SLOW drag, or 0.3 for FAST response
+        cursorX += (mouseX - cursorX) * 0.15;
+        cursorY += (mouseY - cursorY) * 0.15;
+
+        // Apply the movement
+        cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) translate(-50%, -50%)`;
+        
+        requestAnimationFrame(animateCursor);
+    }
+    
+    // Start the cursor loop
+    animateCursor();
     // --- 1. SMOOTH SCROLL SETUP (LENIS) ---
     const lenis = new Lenis({
         duration: 1.2,
