@@ -12,7 +12,7 @@
             cursor: none; /* Hides the default Windows/Mac arrow */
         }
 
-        #cursor-dot {
+       #cursor-dot {
             position: fixed;
             top: 0;
             left: 0;
@@ -20,13 +20,13 @@
             height: 10px;
             background-color: white;
             border-radius: 50%;
-            pointer-events: none; /* Crucial: lets clicks pass through */
+            pointer-events: none;
             z-index: 9999;
             transform: translate(-50%, -50%);
-            mix-blend-mode: difference; /* Optional: makes it visible on white backgrounds */
-            transition: width 0.2s, height 0.2s; /* Smooth sizing for hover effects */
+            mix-blend-mode: difference;
+            transition: width 0.3s, height 0.3s, opacity 0.3s ease; /* Added opacity transition */
+            opacity: 0; /* Invisible by default */
         }
-
         /* Hover effect: Scale up slightly when over links */
         #cursor-dot.hovered {
             width: 40px;
@@ -188,7 +188,6 @@
     <div id="cursor-dot"></div>
 
     <div class="container">
-    ```
 <div class="container">
     <header>
         <h1>Blue Archive Savings Plan Shenanigans</h1>
@@ -198,37 +197,37 @@
 
     <div class="section-header">Target Students</div>
     <div class="grid">
-        <a href="https://schaledb.com/student/iori_swimsuit" target="_blank" class="card">
-            <img src="iori.png" class="portrait">
-            <div class="card-content">
-                <span class="date-tag">MAR 10 – MAR 17</span>
+		<div class="card" data-url="https://schaledb.com/student/iori_swimsuit">
+    		<img src="iori.png" class="portrait">
+    		<div class="card-content">
+				<span class="date-tag">MAR 10 – MAR 17</span>
                 <span class="student-title">Iori (Swimsuit)</span>
                 <span class="role">Strong DPS • Main Priority</span>
                 <p class="assessment">High-impact explosive damage. Your primary goal for this season's recruitment.</p>
-            </div>
-        </a>
+        	</div>
+		</div>
 
-        <a href="https://schaledb.com/student/hina_swimsuit" target="_blank" class="card">
-            <img src="hina.png" class="portrait">
-            <div class="card-content">
-                <span class="date-tag">MAR 10 – MAR 17</span>
+		<div class="card" data-url="https://schaledb.com/student/hina_swimsuit">
+    		<img src="hina.png" class="portrait">
+    		<div class="card-content">
+				<span class="date-tag">MAR 10 – MAR 17</span>
                 <span class="student-title">Hina (Swimsuit)</span>
                 <span class="role">Solid All-Around DPS</span>
                 <p class="assessment">A must-have for mid-to-endgame players. Excellent for large-scale battles.</p>
-            </div>
-        </a>
+        	</div>
+		</div>
         
-        <a href="https://schaledb.com/student/mari_idol" target="_blank" class="card">
-            <img src="mari.png" class="portrait">
-            <div class="card-content">
-                <span class="date-tag">APR 28 – MAY 12</span>
+		<div class="card" data-url="https://schaledb.com/student/mari_idol">
+    		<img src="mari.png" class="portrait">
+    		<div class="card-content">
+				<span class="date-tag">APR 28 – MAY 12</span>
                 <span class="student-title">Mari (Pop Idol)</span>
                 <span class="role">Top-Tier Healer</span>
                 <p class="assessment">Still critical for survival, but prioritize Fest units first if funds are low.</p>
-            </div>
-        </a>
-
-        <a href="https://schaledb.com/student/sakurako_idol" target="_blank" class="card">
+        	</div>
+		</div>
+	
+		<div class="card" data-url="https://schaledb.com/student/sakurako_idol">
             <img src="sakurako.png" class="portrait">
             <div class="card-content">
                 <span class="date-tag">APR 28 – MAY 12</span>
@@ -236,9 +235,8 @@
                 <span class="role">Solid Support</span>
                 <p class="assessment">Only pull if you have leftover Pyroxenes after the Hoshino/Shiroko spark.</p>
             </div>
-        </a>
-        
-        <a href="https://schaledb.com/student/hoshino_battle_dealer" target="_blank" class="card" style="border-color: var(--accent-pink); background: rgba(247, 37, 133, 0.1);">
+        </div>
+        <div class="card" data-url="https://schaledb.com/student/hoshino_battle_dealer" style="border-color: var(--accent-pink); background: rgba(247, 37, 133, 0.1);">
             <img src="hoshino_armed.png" class="portrait">
             <div class="card-content">
                 <span class="date-tag" style="background: var(--accent-pink); color: white;">FESTIVAL BANNER JUN 23 – JUN 30</span>
@@ -246,9 +244,9 @@
                 <span class="role">Fest Tank / Buffer • MUST PULL</span>
                 <p class="assessment">Game-breaking support capabilities. Increases effectiveness of all Red/Explosive allies. <strong>Do not skip.</strong></p>
             </div>
-        </a>
-
-        <a href="https://schaledb.com/student/shiroko_terror" target="_blank" class="card" style="border-color: var(--accent-pink); background: rgba(247, 37, 133, 0.1);">
+        </div>
+		
+        <div class="card" data-url="https://schaledb.com/student/shiroko_terror" style="border-color: var(--accent-pink); background: rgba(247, 37, 133, 0.1);">
             <img src="shiroko_terror.png" class="portrait">
             <div class="card-content">
                 <span class="date-tag" style="background: var(--accent-pink); color: white;">FESTIVAL BANNER JUN 23 – JUN 30</span>
@@ -256,7 +254,7 @@
                 <span class="role">Fest DPS • Maximum Priority</span>
                 <p class="assessment">Massive mystic damage output. Since she is on a Fest banner, you have a 6% rate for 3★ students here.</p>
             </div>
-        </a>
+        </div>
     </div>
 
     <div class="section-header">Strategies</div>
@@ -318,42 +316,66 @@
 <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script> 
 
 <script>
-	// --- 0. AESTHETIC CURSOR LOGIC ---
+	// --- CLICK LOGIC (Hides Status Bar) ---
+    document.querySelectorAll('.card').forEach(card => {
+        card.addEventListener('click', () => {
+            const url = card.getAttribute('data-url');
+            if (url) {
+                window.open(url, '_blank');
+            }
+        });
+    });
+// --- 0. AESTHETIC CURSOR LOGIC ---
     const cursor = document.getElementById('cursor-dot');
-    
-    // Variables to track position
-    let mouseX = 0, mouseY = 0; // Where the real mouse is
-    let cursorX = 0, cursorY = 0; // Where our dot is
-    
-    // 1. Listen for real mouse movement
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
+    let isTouch = false;
+
+    // 1. Hide cursor if touch input is detected
+    window.addEventListener('touchstart', () => {
+        isTouch = true;
+        cursor.style.opacity = 0;
+    }, { passive: true });
+
+    // 2. Track mouse movement and show cursor
     document.addEventListener('mousemove', (e) => {
+        if (isTouch) return; // Do nothing if it's a touch device
+        
         mouseX = e.clientX;
         mouseY = e.clientY;
+        
+        // Fade in when the mouse moves
+        cursor.style.opacity = 1;
     });
 
-    // 2. Add hover effect for links (makes dot bigger)
-    const links = document.querySelectorAll('a, .card'); // Targets links and your cards
+    // 3. Hide when mouse leaves the window (the "borderless" feel)
+    document.addEventListener('mouseleave', () => {
+        cursor.style.opacity = 0;
+    });
+
+    document.addEventListener('mouseenter', () => {
+        if (!isTouch) cursor.style.opacity = 1;
+    });
+
+    // 4. Hover effect for links/cards
+    const links = document.querySelectorAll('a, .card, .external-link');
     links.forEach(link => {
         link.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
         link.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
     });
 
-    // 3. The Animation Loop (The "Smoothing" Math)
+    // 5. Smooth Animation Loop
     function animateCursor() {
-        // "Lerp" formula: Move 15% of the distance towards the mouse every frame
-        // Change 0.15 to 0.05 for SLOW drag, or 0.3 for FAST response
-        cursorX += (mouseX - cursorX) * 0.15;
-        cursorY += (mouseY - cursorY) * 0.15;
-
-        // Apply the movement
-        cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) translate(-50%, -50%)`;
-        
+        if (!isTouch) {
+            cursorX += (mouseX - cursorX) * 0.15;
+            cursorY += (mouseY - cursorY) * 0.15;
+            cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) translate(-50%, -50%)`;
+        }
         requestAnimationFrame(animateCursor);
     }
     
-    // Start the cursor loop
     animateCursor();
-    // --- 1. SMOOTH SCROLL SETUP (LENIS) ---
+	// --- 1. SMOOTH SCROLL SETUP (LENIS) ---
     const lenis = new Lenis({
         duration: 1.2,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
