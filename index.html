@@ -6,7 +6,9 @@
     <title>BA 2026 Banner Plan</title>
     
     <link id="favicon" rel="icon" href="frame0.png" type="image/png">
-
+	html {
+        scroll-behavior: smooth; /* Level 1: Smooth anchor jumping */
+    }
     <style>
         @font-face {
             font-family: 'Google Sans';
@@ -280,26 +282,38 @@
         <span id="last-updated" style="font-size: 0.7rem; opacity: 0.8;"></span>
     </footer>
 </div>
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script> 
 
 <script>
-// --- LAST UPDATED & PRELOADER LOGIC ---
+    // --- 1. SMOOTH SCROLL SETUP (LENIS) ---
+    const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smooth: true
+    });
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // --- 2. LAST UPDATED LOGIC ---
     window.addEventListener('DOMContentLoaded', () => {
-        // 1. Update the date
         const lastMod = new Date(document.lastModified);
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         const dateElement = document.getElementById('last-updated');
         if (dateElement) {
-            dateElement.textContent = "Last Updated: " + lastMod.toLocaleDateString(undefined, options);
+            dateElement.textContent = "Last Intelligence Sync: " + lastMod.toLocaleDateString(undefined, options);
         }
 
-        // 2. Preload favicon frames to prevent flickering/lag
+        // Preload favicon frames
         frames.forEach(frame => {
             const img = new Image();
             img.src = frame.s;
         });
     });
 
-    // --- FAVICON ANIMATION LOGIC ---
+    // --- 3. FAVICON ANIMATION LOGIC ---
     const frames = [
         { s: 'frame0.png', d: 60 }, { s: 'frame1.png', d: 60 }, { s: 'frame2.png', d: 60 },
         { s: 'frame3.png', d: 120 }, { s: 'frame4.png', d: 120 }, { s: 'frame5.png', d: 60 },
@@ -330,7 +344,6 @@
         setTimeout(up, frames[i].d);
     }
 
-    // Initialize animation after everything is ready
     window.addEventListener('load', () => {
         setTimeout(up, frames[0].d);
     });
